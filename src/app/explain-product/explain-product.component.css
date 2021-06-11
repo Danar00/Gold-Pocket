@@ -1,0 +1,31 @@
+#img {
+    width: 100%;
+    height: 100%;
+}
+
+#explain-page {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+#mandiri-explain {
+    text-align: center;
+    margin-top: 90px;
+    margin-bottom: 30px;
+}
+
+h4 {
+    margin-bottom: 20px;
+    
+}
+
+#label-join {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#button-register {
+    width: 100%;
+    color: white;
+}
