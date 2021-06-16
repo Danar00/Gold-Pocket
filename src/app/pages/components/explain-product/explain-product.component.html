@@ -1,0 +1,20 @@
+<div class="container" id="explain-page">
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="../../assets/img/subs.png" alt="" id="img">
+      </div>
+      <div class="col-sm-6">
+        <h3 id="mandiri-explain">Why Mandiri Gold?</h3>
+        <div class="row" style="text-align: center; margin-bottom: 30px;">
+            <div *ngFor="let item of reasons" class="col-sm-4">
+                <h4>{{item.title}}</h4>
+                <p>{{item.description}}</p>
+            </div>
+        </div>
+        <h4 id="label-join">Let's Join Us For Free</h4>
+        <button type="button" class="btn btn-warning" id="button-register">Register</button>
+
+        
+      </div>
+    </div>
+  </div>

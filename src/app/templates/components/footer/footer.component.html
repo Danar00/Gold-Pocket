@@ -8,10 +8,9 @@
             <li class="active"><a href="#">Contact</a></li>
         </ul>
     </div>
-    <div class="col-sm-4 pad">
-        <h4>Central Office</h4>
-        <h5>Jl. Jendral Gatot Kav. 36 - 38</h5>
-        <h5>Jakarta 12190 Indonesia</h5>
+    <div *ngFor="let item of footers" class="col-sm-4 pad">
+        <h4>{{item.officeName}}</h4>
+        <h5>{{item.address}}</h5>
     </div>
     <div class="col-sm-4 pad">
         <h4 id="followUs">Follow Us</h4>
@@ -22,3 +21,4 @@
 <div id="copyright">
     <p>&copy;2020 PT Bank Mandiri (Persero) Tbk</p>
 </div>
+
