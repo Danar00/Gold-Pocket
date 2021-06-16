@@ -4,7 +4,7 @@ import { Benefits } from '../../models/benefits-models';
 @Component({
   selector: 'app-explain-product',
   templateUrl: './explain-product.component.html',
-  styleUrls: ['./explain-product.component.css']
+  styleUrls: ['./explain-product.component.scss']
 })
 export class ExplainProductComponent implements OnInit {
 
