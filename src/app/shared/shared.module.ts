@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BsNavbarDirective, BsNavbarTextDirective } from './directives/bs-navbar/bs-navbar.directive';
 
+const DIRECTIVES = [BsNavbarDirective, BsNavbarTextDirective]
 
 @NgModule({
   declarations: [
-    BsNavbarDirective, BsNavbarTextDirective
+    ...DIRECTIVES
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    BsNavbarDirective, BsNavbarTextDirective
+    ...DIRECTIVES
   ]
 })
 export class SharedModule { }
