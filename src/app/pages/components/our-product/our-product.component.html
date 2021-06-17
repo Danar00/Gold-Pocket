@@ -1,20 +1,10 @@
-<!-- <div class="container bg-light" id="our-products">
-    <h3>Our Products</h3>
-    <div class="row">
-      <div *ngFor="let item of ourProduct" class="col-sm-4" id="ourProduct1">
-        <img src="../../assets/img/{{item.image}}" width="250" height="250" alt="">
-        <h4>{{item.type}} Vest</h4>
-      </div>
-    </div>
-  </div> -->
-
   <div class="cards-view"> 
     <h3> Our Product </h3>
     <div class="card-group">
         <div class="card" *ngFor="let cardData of cardDatas">
           <img class="card-img-top" src="../../assets/img/{{cardData.image}}" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">{{cardData.type}} Investment</h5>
+            <h5 class="card-title">{{ cardData.type + "investment" | titlecase }}</h5>
           </div>
         </div>
       </div>

@@ -10,15 +10,15 @@ export class OurProductComponent implements OnInit {
 
   cardDatas = [
     {
-      type: "Platinum",
+      type: "platinum ",
       image: 'platinum.png'
     },
     {
-      type: "Gold",
+      type: "gold ",
       image: 'gold.png'
     },
     {
-      type: "Silver",
+      type: "silver ",
       image: 'silver.png'
     }
   ]
