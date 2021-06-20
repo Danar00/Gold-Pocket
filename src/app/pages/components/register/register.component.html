@@ -1,0 +1,18 @@
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 py-5">
+                <h2>Mandiri New Account</h2>
+                <div class="d-flex flex-row"> <span class="mr-2">Already have an account</span> <a href="#" class="signin-link">Signin here</a> </div>
+                <div class="signup mt-3"> 
+                    <input type="text" name="" class="form-control" placeholder="Email" #email> 
+                    <input type="text" name="" class="form-control" placeholder="Username" #user> 
+                    <input type="text" name="" class="form-control" placeholder="Password" #pass> </div>
+                <div class="form-check form-switch mt-3"> 
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked> <label class="form-check-label" for="flexSwitchCheckChecked">Remember password?</label> </div>
+                <div class="mt-4"> 
+                    <button class="btn btn-danger button btn-block" (click)="addNewUser(email.value, user.value, pass.value)">Register</button> </div>
+            </div>
+        </div>
+    </div>
+</div>
