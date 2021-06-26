@@ -1,4 +1,4 @@
-import { CarouselModels } from './../../models/carousel-models';
+import { CarouselModels } from '../../../../models/carousel-models';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

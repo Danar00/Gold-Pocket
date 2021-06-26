@@ -1,6 +1,9 @@
-import { ServiceUtilsService } from './../../../shared/services/service-utils/service-utils.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ServiceUtilsService } from 'src/app/shared/services/service-utils/service-utils.service';
+import { LoginService } from '../service/login.service';
+import { FlashMessageService } from 'src/app/shared/services/flash/flash.service';
 
 @Component({
   selector: 'app-login',
@@ -8,38 +11,39 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  form: FormGroup;
 
-  constructor(private readonly _serviceUtils: ServiceUtilsService) { 
-    
-  }
-
-  //Reactive Form = FormGroup
-  // loginForm: FormGroup = new FormGroup({
-  //   id: new FormControl(0),
-  //   user: new FormControl(''),
-  //   pass: new FormControl('')
-
-  // });
+  constructor(
+    private readonly router: Router,
+    private readonly loginService: LoginService,
+    private readonly flash: FlashMessageService
+  ) {}
   
   ngOnInit(): void {
-    
-  }
-  currentVal:string = ""
-
-  addNewLogin(user: string, pass: string): void {
-    console.log(`ini user ${user}`);
-    console.log(`ini pass ${pass}`);
-
-    this._serviceUtils.storeLogin(user, pass);
-    
+    this.form = new FormGroup({
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    })
   }
 
-  
+  submitForm(): void {
+    if(this.form.valid) {
+      const credentials = this.form.value
+      const redirectBackUrl = this.flash.get()
 
-  
-
-
-
-
+      this.loginService.login({
+        email: credentials.username, 
+        password: credentials.password
+      }).subscribe((token) => {
+        if (token) {
+          sessionStorage.setItem('credentials', token);
+          this.router.navigateByUrl(redirectBackUrl || '/')
+        }
+      }), (error) => {
+        const message = error.error.error;
+        alert(message)
+      }
+    }
+  }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Benefits } from '../../models/benefits-models';
+import { Benefits } from '../../../../models/benefits-models';
 
 @Component({
   selector: 'app-explain-product',

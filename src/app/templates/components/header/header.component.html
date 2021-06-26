@@ -10,13 +10,13 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li> -->
           <li class="nav-item">
-            <a appBsTextNavbar href="#">Platinum</a>
+            <a appBsTextNavbar routerLink="/platinum">Platinum</a>
           </li>
           <li class="nav-item">
-            <a appBsTextNavbar href="#">Gold</a>
+            <a appBsTextNavbar routerLink="/gold">Gold</a>
           </li>
           <li class="nav-item">
-            <a appBsTextNavbar href="#">Silver</a>
+            <a appBsTextNavbar routerLink="/silver">Silver</a>
           </li>
           <li class="nav-item">
             <a appBsTextNavbar href="#">{{sampleDate | customdate : 'DD/MM/YY' : 'dddd, DD MMMM YY'}}</a>
@@ -26,6 +26,9 @@
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <div class="icon">
+          <mat-icon [inline]="true" routerLink="/profile">person</mat-icon>
+        </div>
       </div>
     </div>
   </nav>
