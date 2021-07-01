@@ -6,6 +6,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { HistoryTransactionComponent } from './history-transaction/history-transaction.component';
 import { ProfileTemplateComponent } from './profile-template/profile-template.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ProfileTemplateComponent } from './profile-template/profile-template.co
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    HistoryTransactionModule
+    HistoryTransactionModule,
+    SharedModule
   ]
 })
 export class ProfileModule { }

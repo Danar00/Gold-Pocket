@@ -10,12 +10,12 @@ export class LoginService {
 
   constructor(private readonly http: HttpClient) { }
 
-  login(credentials: {email: string, password: string}): Observable<string> {
-    return this.http.post('https://reqres.in/api/login', credentials)
+  login(credentials: {email: string, password: string}): Observable<any> {
+    return this.http.post('http://localhost:8080/login', credentials)
       .pipe(
         retry(3),
-        map((response: any) =>  response.token)
+        map((response: any) =>  response)
+        
       );
   }
-
 }

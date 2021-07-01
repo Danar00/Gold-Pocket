@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(): void {
     this.form = new FormGroup({
-      username: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     })
   }
@@ -32,14 +32,23 @@ export class LoginComponent implements OnInit {
       const redirectBackUrl = this.flash.get()
 
       this.loginService.login({
-        email: credentials.username, 
+        email: credentials.email, 
         password: credentials.password
-      }).subscribe((token) => {
-        if (token) {
-          sessionStorage.setItem('credentials', token);
+      }).subscribe((data) => {
+        if (data.status) {
+          sessionStorage.setItem('credentials', JSON.stringify(data));
+          sessionStorage.setItem('user-id', JSON.stringify(data.id));
+
           this.router.navigateByUrl(redirectBackUrl || '/')
+          console.log(data);
+          
+        } else {
+          const message = "Email atau Password anda salah"
+          alert(message)
+          
         }
       }), (error) => {
+        console.log(error);
         const message = error.error.error;
         alert(message)
       }

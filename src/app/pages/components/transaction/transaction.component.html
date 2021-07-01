@@ -5,20 +5,20 @@
                     <img src="../../../../assets/img/platinum.png" class="card-img-left imageSet " alt="content.mineAlt">
                     <div class="flex-column mt-5 spacer">
                         <h6> Your gold amount</h6>
-                        <h4>Rp.10000000</h4>
-                        <p>2 gram</p>
+                        <h4>Rp. {{pocketQty * products.productPriceSell}}</h4>
+                        <p>{{pocketQty}} gram</p>
                     </div>
             </div>
         </div>
         <div class="col-4 d-flex flex-column justify-content-center align-items-left mt-5 mb-4 ">
-            <div class="card cardSet d-flex flex-row rowPrice spacer" >
+            <div class="card cardSet d-flex flex-row rowPrice spacer">
                     <div class="flex-column mt-5 spacer">
                         <p>Buy price</p>
-                        <h5>Rp.850.000/gram</h5>
+                        <h5>Rp.{{products.productPriceBuy}}/gram</h5>
                     </div>
                     <div class="flex-column mt-5 spacer">
                         <p>Sell price</p>
-                        <h5>Rp.850.000/gram</h5>
+                        <h5>Rp.{{products.productPriceSell}}/gram</h5>
                     </div>
             </div>
                 
@@ -26,34 +26,100 @@
 
     </div>
     <div class="row">
-        <div class="col-2 card spacer">
+        <div class="col-2 card spacer" *ngFor="let item of transactions">
             <div class="spacer">
-                <h5>Tabungan emasku</h5>
-                <h6>Rp.1200000000</h6>
-                <p>2 gram</p>
+                <h5>{{item.pocketName}}</h5>
+                <h3>Rp {{item.pocketQty * productPrice}}</h3>
+                <p>{{item.pocketQty}}</p>
+            </div>  
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" appBsButton data-bs-toggle="modal" data-bs-target="#updateModal" (click)="pocket.id = item.id" (click)="pocket.pocketQty = item.pocketQty">
+                        Update
+                    </button>
                 </div>
+                <div class="col-6">
+                    <button class="btn btn-danger" (click) ="deletePocketById(item.id)">Delete</button>
+                </div>
+            </div>
         </div>
         <div class="col-2  spacer">
             <div class="spacer">
-                <button appBsButton>Add Pocket</button>
+                <!-- <button appBsButton>Add Pocket</button> -->
+                <button type="button" appBsButton data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Add Pocket
+                </button>
             </div>
         </div>
     </div>
 
+  
+  <!-- Modal Add -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel">New Pocket</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formPocket" (ngSubmit)="submitForm()">
+            <div class="mb-3">
+                <label for="text" class="form-label">Pocket name</label>
+                <input type="text" id="pocketName" class="form-control" formControlName="pocketName" placeholder="My gold saving">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" [disabled]="formPocket.invalid">Save</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Update -->
+  <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel">New Pocket</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formUpdatePocket" (ngSubmit)="updateForm()">
+            <div class="mb-3">
+                <label for="text" class="form-label">Pocket name</label>
+                <input type="text" id="pocketName" class="form-control" formControlName="pocketUpdateName" placeholder="My gold saving">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" [disabled]="formUpdatePocket.invalid">Save</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="row card rowPrice spacer">
         <div class="mt-2">
-            <button appBsButton>Sell</button>
-            <button appBsButton>Buy</button>
+            <button type="button" appBsButton data-bs-toggle="modal" data-bs-target="#buyModal" (click)="purchase.purchaseType = 1">
+                Sell
+            </button>
+            <button type="button" appBsButton data-bs-toggle="modal" data-bs-target="#buyModal" (click)="purchase.purchaseType = 0">
+                Buy
+            </button>
         </div>
         <div class="row">
             <div class="col-8 card mt-2 mb-4">
                 <div class="row">
                     <div class="col-6 mt-2">
-                        <p>Value Id</p>
+                        <p>Value on IDR</p>
                         <h5>0</h5>
                     </div>
                     <div class="col-6 mt-2">
-                        <p>Value Id</p>
+                        <p>Value on Gram</p>
                         <h5>0</h5>
                     </div>
                 </div>
@@ -65,11 +131,42 @@
         </div>
     </div>
 
+    <!-- Modal Buy -->
+  <div class="modal fade" id="buyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel">Transaction</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formTransactionBuy" (ngSubmit)="purchaseBuy()">
+            <div class="mb-3">
+                <label for="text" class="form-label">AmountGram</label>
+                <input type="text" id="pocketName" class="form-control" formControlName="gramPurchase" placeholder="gram">
+            </div>
+            <div class="mb-3">
+                <label for="text" class="form-label">Pocket Name</label>
+                <select class="form-control" name="idPocket" formControlName="idPocket" required>
+                    <option>--PILIH--</option>
+                    <option *ngFor="let item of transactions" value='{{item.id}}'>{{item.pocketName}}</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" [disabled]="formTransactionBuy.invalid">Save</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="row card rowPrice spacer">
         <div >
             <button class="spacer" appBsButton >Sell</button>
             <button class="spacer" appBsButton color="secondary">Buy</button>
-            <img src="../../../../assets/img/carousel-1.png" class="rowPrice" alt="">
+            <img src="../../../../assets/img/chart.png" class="rowPrice" alt="">
             </div>
     </div>
 </div>
