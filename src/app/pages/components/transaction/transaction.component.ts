@@ -115,6 +115,7 @@ export class TransactionComponent implements OnInit {
     window.location.reload();
   }
 
+  //SemuaPocket
   getAllPocketById(): void {
     this.activatedRoute.queryParams.subscribe((queryParams: Params) => {
       console.log('query string:', queryParams);
@@ -126,6 +127,9 @@ export class TransactionComponent implements OnInit {
         .subscribe((response: ResponseTransaction<Transaction[]>) => {
           this.transactions = this.transactions.concat(response);
 
+          console.log('ini all pocket : ', this.transactions);
+          
+
           for (let i = 0; i < this.transactions.length; i++) {
             this.pocketQty += response[i].pocketQty;
           }
@@ -136,6 +140,7 @@ export class TransactionComponent implements OnInit {
     });
   }
 
+  //PRICE BUY AND SELL PRODUCT
   getAllProductById(): void {
     this.activatedRoute.queryParams.subscribe((queryParams: Params) => {
       console.log('query string: ', queryParams);
@@ -146,7 +151,7 @@ export class TransactionComponent implements OnInit {
         this.products = response;
         this.productPrice = this.products.productPriceSell;
 
-        console.log(this.products);
+        console.log('ini produk: ', this.products);
       });
     });
   }
@@ -173,6 +178,7 @@ export class TransactionComponent implements OnInit {
       purchaseType: this.purchase.purchaseType,
       purchaseDetails: payLoad
     }).subscribe();
+    window.location.reload();
 
   }
 }
