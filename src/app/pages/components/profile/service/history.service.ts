@@ -8,6 +8,7 @@ import { retry, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class HistoryService {
   history: History[] = []
   purhcases: Purchase[] = []
@@ -29,7 +30,5 @@ export class HistoryService {
       .pipe(retry(3))
   }
 
-  
 }
 
-// 8a68e4d478f8d7340178f8da705c0000

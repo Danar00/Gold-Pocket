@@ -1,4 +1,5 @@
-// import { BsInputDirective } from './bs-input.directive';
+import { BsInputDirective } from './bs-input.directive';
+
 
 // describe('BsInputDirective', () => {
 //   it('should create an instance', () => {
@@ -6,3 +7,5 @@
 //     expect(directive).toBeTruthy();
 //   });
 // });
+
+

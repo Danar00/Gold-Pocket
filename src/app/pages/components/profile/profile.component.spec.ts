@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProfileComponent } from './profile.component';
+import { CommonModule } from "@angular/common";
+import { SharedModule } from "./../../../shared/shared.module";
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
