@@ -13,4 +13,14 @@ describe('ServiceUtilsService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should be created store:Login', () => {
+    let mock = service.storeLogin("danarhikmah@student.ub.ac.id", "password")
+    expect(mock).toBeTruthy();
+  });
+
+  it('should be created', () => {
+    let mock = service.storeRegister("danarhikmah@student.ub.ac.id", "danar", "password")
+    expect(mock).toBeTruthy();
+  });
 });

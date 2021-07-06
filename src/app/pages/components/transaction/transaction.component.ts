@@ -97,7 +97,7 @@ export class TransactionComponent implements OnInit {
       })
       .subscribe();
     console.log('formPocket', this.formPocket.value);
-    window.location.reload();
+    // window.location.reload();
   }
 
   updateForm(): void {
@@ -112,7 +112,7 @@ export class TransactionComponent implements OnInit {
       })
       .subscribe();
     console.log('formUpdatePocket', this.formUpdatePocket.value);
-    window.location.reload();
+    // window.location.reload();
   }
 
   //SemuaPocket
@@ -159,7 +159,7 @@ export class TransactionComponent implements OnInit {
   deletePocketById(id: string): void {
     console.log('ini id : ', id);
     this.transactionService.deletePocket(id).subscribe();
-    window.location.reload();
+    // window.location.reload();
   }
 
   purchaseBuy(): void {
@@ -178,7 +178,7 @@ export class TransactionComponent implements OnInit {
       purchaseType: this.purchase.purchaseType,
       purchaseDetails: payLoad
     }).subscribe();
-    window.location.reload();
+    // window.location.reload();
 
   }
 }

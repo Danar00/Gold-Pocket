@@ -27,6 +27,5 @@ describe('TemplateComponent()',() => {
       expect(appHeader).toBeTruthy();
   })
 
-
 })
 

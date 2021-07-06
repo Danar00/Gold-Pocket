@@ -18,5 +18,17 @@ describe('BsButtonDirective', () => {
     expect(mock).toBeTruthy();
   });
 
+  it('should have get color()', () => {
+    const directive = new BsButtonDirective();
+    let mock = directive.color
+    expect(mock).toBeTruthy();
+  });
+
+  it('should have get size()', () => {
+    const directive = new BsButtonDirective();
+    let mock = directive.size
+    expect(mock).toBeTruthy();
+  });
+
 
 });
