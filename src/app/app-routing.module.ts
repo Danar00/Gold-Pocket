@@ -12,6 +12,11 @@ const routes: Routes = [
         loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule)
         //Lazy Load
     },
+    {
+        path: 'register',
+        loadChildren: () => import('./pages/components/register/register.module').then((m) => m.RegisterModule)
+        //Lazy Load
+    }
 ];
 
 @NgModule({
