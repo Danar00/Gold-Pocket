@@ -32,4 +32,5 @@ describe('PagesComponent', () => {
     let method = component.ngOnInit()
     expect(method).toBeUndefined();
   });
+
 });
