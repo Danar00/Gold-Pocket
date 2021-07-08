@@ -39,7 +39,7 @@ export class HistoryTransactionComponent implements OnInit {
       
       console.log('query string:', queryParams);
 
-      const id = queryParams.id || '8a68e4d478fd79e90178fd7a53b50000';
+      const id = queryParams.id || '1';
 
       this.historyService.getAll(id)
         .subscribe((response: ResponseHistory<History[]>) => {
@@ -56,7 +56,7 @@ export class HistoryTransactionComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((queryParams: Params) => {
       console.log('query string:', queryParams);
 
-      const id = queryParams.id || '8a68e4d478f8d7340178f8da705c0000'
+      const id = queryParams.id || '2c9380827a844fb1017a84530696002d'
 
       this.historyService.getPurchaseByCustomerId(id)
         .subscribe((response: ResponsePurchase<Purchase[]>) => {

@@ -12,7 +12,6 @@ import { retry, map } from 'rxjs/operators';
 export class HistoryService {
   history: History[] = []
   purhcases: Purchase[] = []
-
   constructor(private readonly http: HttpClient) {}
 
   getAll(id: string): Observable<ResponseHistory<History[]>> {

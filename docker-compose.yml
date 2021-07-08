@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+    app-server:
+        image: 'gold-pocket-boot:latest'
+        build: 
+            context: .
+        container_name: gold-pocket-be
+        ports:
+            - 8080:8080
+            
+        environment: 
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+            - SPRING_DATASOURCE_USERNAME=compose-postgres
+            - SPRING_DATASOURCE_PASSWORD=compose-postgres
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+            
+        networks: 
+            - backend
+            - frontend
+
+    # Front End Service
+    app-client:
+        image: 'gold-pocket:latest'
+        build: .
+        ports: 
+            - 80:80
+        container_name: gold-pocket-fe
+        restart: always
+        depends_on: 
+            - app-server
+        networks: 
+            - frontend
+        links: 
+            - app-server
+        
+    # Postgres SQL
+    db:
+        image: 'postgres:13.1-alpine'
+        container_name: gold-pocket
+        environment: 
+            - POSTGRES_USER=compose-postgres
+            - POSTGRES_PASSWORD=compose-postgres
+        networks: 
+            - backend
+# Network
+networks: 
+    backend:
+    frontend:

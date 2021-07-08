@@ -36,7 +36,7 @@ export class TransactionComponent implements OnInit {
   };
 
   transaction: Transaction = {
-    id: '8a68e4d478fd79e90178fd7a53b50000',
+    id: '1',
   };
 
   transactions: Transaction[] = [];
@@ -97,7 +97,7 @@ export class TransactionComponent implements OnInit {
       })
       .subscribe();
     console.log('formPocket', this.formPocket.value);
-    // window.location.reload();
+    window.location.reload();
   }
 
   updateForm(): void {
@@ -112,7 +112,7 @@ export class TransactionComponent implements OnInit {
       })
       .subscribe();
     console.log('formUpdatePocket', this.formUpdatePocket.value);
-    // window.location.reload();
+    window.location.reload();
   }
 
   //SemuaPocket
@@ -120,10 +120,10 @@ export class TransactionComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((queryParams: Params) => {
       console.log('query string:', queryParams);
 
-      const id = queryParams.id || '8a68e4d478f8d7340178f8da705c0000';
+      const id = queryParams.id || this.customerId;
 
       this.transactionService
-        .getAll(id)
+        .getAll(this.customerId.id)
         .subscribe((response: ResponseTransaction<Transaction[]>) => {
           this.transactions = this.transactions.concat(response);
 
@@ -145,7 +145,7 @@ export class TransactionComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((queryParams: Params) => {
       console.log('query string: ', queryParams);
 
-      const id = queryParams.id || '8a68e4d478fd79e90178fd7a53b50000';
+      const id = queryParams.id || '1';
 
       this.transactionService.getPocketById(id).subscribe((response: any) => {
         this.products = response;
@@ -159,7 +159,7 @@ export class TransactionComponent implements OnInit {
   deletePocketById(id: string): void {
     console.log('ini id : ', id);
     this.transactionService.deletePocket(id).subscribe();
-    // window.location.reload();
+    window.location.reload();
   }
 
   purchaseBuy(): void {
@@ -178,7 +178,7 @@ export class TransactionComponent implements OnInit {
       purchaseType: this.purchase.purchaseType,
       purchaseDetails: payLoad
     }).subscribe();
-    // window.location.reload();
+    window.location.reload();
 
   }
 }
